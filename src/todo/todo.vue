@@ -1,7 +1,7 @@
 <template>
   <section class="todo-box">
     <input type="text" class="add-input" autofocus placeholder="接下来做什么？" @keyup.enter="addToDo">
-    <Item :todo="todo"></Item>
+    <Item v-for="todo in todos" :todo="todo" :key="todo.id"></Item>
     <Tabs :filter="filter"></Tabs>
   </section>
 </template>
@@ -9,6 +9,7 @@
 <script>
 import Item from "./item.vue";
 import Tabs from "./tabs.vue";
+let id = 0;
 export default {
   components: {
       Item,
@@ -16,17 +17,25 @@ export default {
   },
   data(){
       return{
-          todo:{
-              id:0,
-              content:'this is todo',
-              completed:false
-          },
+          todos:[],
+          // todo:{
+          //     id:0,
+          //     content:'this is todo',
+          //     completed:false
+          // },
           filter:'all'
       }
   },
   methods: {
-    addToDo() {
+    addToDo(e) {
       console.log("click 回车...");
+      console.log(e);
+      this.todos.unshift({
+        id:id++,
+        content:e.target.value.trim(),
+        completed:false
+      })
+      e.target.value = '';
     }
   }
 };

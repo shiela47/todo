@@ -27,7 +27,7 @@ export default {
   position: relative;
   background-color: #fff;
   font-size: 1.5rem;
-  border-bottom: 0.625rem solid rgba(0, 0, 0, 0.06);
+  border-bottom: 0.0625rem solid rgba(0, 0, 0, 0.06);
   &:hover {
     .destory:after {
       content: "×";
